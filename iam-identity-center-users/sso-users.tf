@@ -1,30 +1,24 @@
-# Retrieve info about AWS SSO/IAM Identity Center configuration
-data "aws_ssoadmin_instances" "example" {}
-
 resource "aws_identitystore_user" "sso_user" {
-  identity_store_id = tolist(data.aws_ssoadmin_instances.example.identity_store_ids)[0]
+  identity_store_id = var.sso_id
+  for_each   = { for user in csvdecode(file(var.csv_with_users)) : "${user.firstname}_${user.lastname}" => user }
 
-  display_name = "${var.first_name} ${var.last_name}"
-  user_name    = var.email
+  display_name = "${each.value.firstname} ${each.value.lastname}"
+  user_name    = each.value.email
 
   name {
-    given_name  = var.first_name
-    family_name = var.last_name
+    given_name  = each.value.firstname
+    family_name = each.value.lastname
   }
 
   emails {
-    value = var.email
+    value = each.value.email
   }
 }
 
-variable "first_name" {
+variable "sso_id" {
   type = string
 }
 
-variable "last_name" {
-  type = string
-}
-
-variable "email" {
+variable "csv_with_users" {
   type = string
 }
