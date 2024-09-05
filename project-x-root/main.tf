@@ -12,13 +12,6 @@ module "users" {
   sso_id = local.local_sso_id
 }
 
-# Create modules using for_each
-module "eng_department" {
-  source     = "../iam-identity-center-users"
-  csv_with_users = "engineering-department.csv"
-  sso_id = local.local_sso_id
-}
-
 module "group_24a" {
   source = "../iam-identity-center-group"
   group_name = "DevOps-24a"
