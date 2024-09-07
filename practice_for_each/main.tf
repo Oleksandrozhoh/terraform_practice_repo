@@ -19,14 +19,14 @@ provider "aws" {
 }
 
 resource "null_resource" "for_each1" {
-  for_each = {for word in ["first", "second", "third"] : word => word }
+  for_each = {for each in csvdecode(file("test.csv")) : "${each.first_name}_${each.last_name}" => each }
 
   triggers = {
     always_run = "${timestamp()}"  # Forces recreation on each apply
   }
 
   provisioner "local-exec" {
-    command = "echo '${each.value}'"
+    command = "echo 'The key is ${each.key}' && echo 'The value is ${each.value.email}'"
   }
 }
 
