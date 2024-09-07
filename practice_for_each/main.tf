@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 resource "null_resource" "for_each1" {
-  for_each = {for each in csvdecode(file("test.csv")) : "${each.first_name}_${each.last_name}" => each }
+  for_each = {for each in csvdecode(file("test.csv")) : upper("${each.first_name}_${each.last_name}") => each }
 
   triggers = {
     always_run = "${timestamp()}"  # Forces recreation on each apply
