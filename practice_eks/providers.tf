@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "312-main-account-state-bucket"
+    bucket = "remote-terraform-backend-oleksandr"
     key    = "24a/terraform.tfstate"
     region = "us-east-2"
     dynamodb_table = "24a_state_lock"
