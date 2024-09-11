@@ -35,12 +35,11 @@ jobs:
           aws-region: "us-east-1"
 
       # Runs a single command using the runners shell
-      - name: list files in current work dir
-        run: ls
-
-      - working-directory: practice_eks/
+      - name: check aws identity
+        run: aws sts get-caller-identity
 
       - name: run terraform code
+        working-directory: practice_eks/
         run: |
           terraform init
           terraform plan -input-false
