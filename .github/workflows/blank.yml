@@ -42,6 +42,6 @@ jobs:
         working-directory: practice_eks/
         run: |
           terraform init
-          terraform plan -input-false
-          terraform apply -auto-approve -input-false
+          terraform plan -input=false
+          terraform apply -auto-approve -input=false
 
