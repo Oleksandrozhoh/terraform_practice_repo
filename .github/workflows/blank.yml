@@ -44,4 +44,5 @@ jobs:
           terraform init
           terraform plan -input=false
           terraform apply -auto-approve -input=false
+          terraform destroy -auto-approve -input=false
 
