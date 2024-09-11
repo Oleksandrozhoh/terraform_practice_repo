@@ -35,5 +35,6 @@ jobs:
           aws-region: "us-east-1"
 
       # Runs a single command using the runners shell
-      - uses: ls
+      - name: list files in current work dir
+        run: ls
 
