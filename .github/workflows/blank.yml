@@ -17,7 +17,10 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  infra-deploy:
+
+    environment: development
+
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -30,7 +33,7 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          role-to-assume: "arn:aws:iam::339712835459:role/terraform_practice_repo_admin_role"
+          role-to-assume: ${{ vars.ROLE_TO_ASSUME }}
           role-session-name: "test-session"
           aws-region: "us-east-1"
 
@@ -41,6 +44,6 @@ jobs:
       - name: run terraform code
         working-directory: practice_eks/
         run: |
-          terraform init -backend-config="bucket=remote-terraform-backend-oleksandr"
-          terraform apply -auto-approve -input=false -var-file=dev.tfvars
+          terraform init -backend-config="bucket=${{ vars.BACKEND_BUCKET }}"
+          terraform apply -auto-approve -input=false -var-file=${{ vars.VAR_FILE_NAME }}
 
