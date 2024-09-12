@@ -41,6 +41,6 @@ jobs:
       - name: run terraform code
         working-directory: practice_eks/
         run: |
-          terraform init -backend-config="bucket=remote-terraform-backend-oleksandr""
+          terraform init -backend-config="bucket=remote-terraform-backend-oleksandr"
           terraform apply -auto-approve -input=false -var-file=dev.tfvars
 
