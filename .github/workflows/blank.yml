@@ -18,7 +18,7 @@ on:
 
 # workflow scope variable
 env:
-ENVIRONMENT_SETUP: ${{ (github.ref == 'refs/heads/main' && 'prod') || (github.ref == 'refs/heads/test' && 'test') || 'development' }} 
+  ENVIRONMENT_SETUP: ${{ (github.ref == 'refs/heads/main' && 'prod') || (github.ref == 'refs/heads/test' && 'test') || 'development' }} 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
