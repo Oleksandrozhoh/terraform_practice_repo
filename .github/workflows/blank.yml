@@ -31,7 +31,8 @@ jobs:
     runs-on: ubuntu-latest
 
     defaults: 
-      working-directory: practice_eks/
+      run:
+        working-directory: practice_eks/
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
