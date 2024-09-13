@@ -51,6 +51,6 @@ jobs:
         working-directory: practice_eks/
         run: |
           terraform init -backend-config="bucket=${{ vars.BACKEND_BUCKET }}"
-          terraform plan -auto-approve -input=false -var-file="${{ (github.ref == 'refs/heads/main' && 'prod') || (github.ref == 'refs/heads/test' && 'test') || 'development' }}.tfvars" 
+          terraform plan -var-file="${{ (github.ref == 'refs/heads/main' && 'prod') || (github.ref == 'refs/heads/test' && 'test') || 'development' }}.tfvars" 
           terraform apply -auto-approve -input=false -var-file="${{ (github.ref == 'refs/heads/main' && 'prod') || (github.ref == 'refs/heads/test' && 'test') || 'development' }}.tfvars" 
 
