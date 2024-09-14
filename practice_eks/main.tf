@@ -1,11 +1,11 @@
 module "eks" {
-  source = "./eks_module"
-  subnet_ids = var.subnet_ids
-  cluster_name = var.cluster_name
-  cluster_role_name = var.cluster_role_name
-  node_group_name = var.node_group_name
+  source               = "./eks_module"
+  subnet_ids           = var.subnet_ids
+  cluster_name         = var.cluster_name
+  cluster_role_name    = var.cluster_role_name
+  node_group_name      = var.node_group_name
   node_group_role_name = var.node_group_role_name
-  instance_types = var.instance_types
+  instance_types       = var.instance_types
 }
 
 variable "subnet_ids" {
