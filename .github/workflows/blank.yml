@@ -55,6 +55,12 @@ jobs:
         run: |
           terraform init -backend-config="bucket=${{ vars.BACKEND_BUCKET }}"
 
+      - name: run format check
+        run: terraform fmt -check
+
+      - name: run tf validatiion
+        run: terraform validate
+
       - name: run terraform plan
         run: |
           terraform plan -var-file="${{ (github.ref == 'refs/heads/main' && 'prod') || (github.ref == 'refs/heads/test' && 'test') || 'development' }}.tfvars" 
