@@ -39,6 +39,13 @@ resource "aws_iam_role" "cluster_role" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
+resource "aws_eks_access_entry" "cluster_role_access_entry" {
+  cluster_name      = aws_eks_cluster.test_cluster.name
+  principal_arn     = "arn:aws:iam::339712835459:user/mike"
+  kubernetes_groups = ["system:masters"]
+  type              = "STANDARD"
+}
+
 resource "aws_iam_role_policy_attachment" "example-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.cluster_role.name
