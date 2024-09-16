@@ -62,9 +62,10 @@ jobs:
         run: terraform validate
 
       - name: run terraform plan
-        run: |
-          terraform plan -var-file="${{ (github.ref == 'refs/heads/main' && 'prod') || (github.ref == 'refs/heads/test' && 'test') || 'development' }}.tfvars" 
+        run: terraform plan -var-file="${{ (github.ref == 'refs/heads/main' && 'prod') || (github.ref == 'refs/heads/test' && 'test') || 'development' }}.tfvars" 
+
+     # - name: apply terraform plan
+       # run: terraform apply -auto-approve -input=false -var-file="${{ (github.ref == 'refs/heads/main' && 'prod') || (github.ref == 'refs/heads/test' && 'test') || 'development' }}.tfvars" 
 
       - name: apply terraform plan
-        run: |
-          terraform apply -auto-approve -input=false -var-file="${{ (github.ref == 'refs/heads/main' && 'prod') || (github.ref == 'refs/heads/test' && 'test') || 'development' }}.tfvars" 
+        run: terraform destroy
