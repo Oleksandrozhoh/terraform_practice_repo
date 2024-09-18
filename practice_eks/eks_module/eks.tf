@@ -54,6 +54,16 @@ resource "aws_eks_access_entry" "cluster_role_access_entry" {
   type              = "STANDARD"
 }
 
+resource "aws_eks_access_policy_association" "example" {
+  cluster_name  = aws_eks_cluster.test_cluster.name
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+  principal_arn = "arn:aws:iam::339712835459:user/mike"
+
+  access_scope {
+    type       = "cluster"
+  }
+}
+
 resource "aws_iam_role_policy_attachment" "example-AmazonEKSClusterPolicy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
   role       = aws_iam_role.cluster_role.name
