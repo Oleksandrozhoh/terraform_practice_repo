@@ -6,6 +6,10 @@ resource "aws_eks_cluster" "test_cluster" {
     subnet_ids = var.subnet_ids
   }
 
+  access_config {
+    authentication_mode = "API_AND_CONFIG_MAP"
+  }
+
     provisioner "local-exec" {
     command = "aws eks update-cluster-config --name ${self.name} --authenticator-mode API_AND_CONFIG_MAP"
   }
