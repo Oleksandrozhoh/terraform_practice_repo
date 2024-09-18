@@ -50,6 +50,7 @@ resource "aws_iam_role" "cluster_role" {
 resource "aws_eks_access_entry" "cluster_role_access_entry" {
   cluster_name      = aws_eks_cluster.test_cluster.name
   principal_arn     = "arn:aws:iam::339712835459:user/mike"
+  kubernetes_groups = ["cluster-admin"]
   type              = "STANDARD"
 }
 
