@@ -2,7 +2,7 @@ resource "aws_db_instance" "default" {
   allocated_storage    = 10
   db_name              = "reviews_app_data"
   engine               = "Postgres"
-  engine_version       = "16.0"
+  engine_version       = "16.1"
   instance_class       = "db.t3.micro"
   backup_retention_period = 7
   identifier = "reviews-app-db"
