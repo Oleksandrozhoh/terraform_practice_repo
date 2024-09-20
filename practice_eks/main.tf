@@ -9,8 +9,8 @@ module "eks" {
 }
 
 module "rds" {
-  source = "../practice-rds-postgres-module"
-  
+  source = "./rds-postgres-module"
+
 }
 
 variable "subnet_ids" {
