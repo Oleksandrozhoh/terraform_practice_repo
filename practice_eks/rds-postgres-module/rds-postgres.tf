@@ -7,7 +7,6 @@ resource "aws_db_instance" "default" {
   backup_retention_period = 7
   identifier = "reviews-app-db"
   username             = "foo"
-  password             = "foobarbaz"
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
   manage_master_user_password = true
