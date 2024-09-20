@@ -8,6 +8,11 @@ module "eks" {
   instance_types       = var.instance_types
 }
 
+module "rds" {
+  source = "../practice-rds-postgres-module"
+  
+}
+
 variable "subnet_ids" {
   type = list(string)
 }
